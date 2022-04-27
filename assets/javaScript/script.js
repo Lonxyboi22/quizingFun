@@ -1,72 +1,83 @@
 const startPageEl = document.querySelector('#start-page');
 const highScoresEl = document.querySelector('#highscores');
 const quizEl = document.querySelector('#quiz');
+const question = document.querySelector("#question");
 const buttonEl = document.querySelector('#btn');
+const answers = document.querySelector('#answer');
+const choiceA = document.getElementById("A");
+const choiceB = document.getElementById("B");
+const choiceC = document.getElementById("C");
+const choiceD = document.getElementById("D");
 let timer
 var timeLeft = 60;
 
-var question1 = [
+let questions = [
     {
         question: "Commonly used data types do NOT include:",
         answers: {
-            a: "strings",
-            b: "boonleans",
-            c: "alerts",
-            d: "numbers"
+            choiceA: "strings",
+            choiceB: "boonleans",
+            choiceC: "alerts",
+            choiceD: "numbers",
+            correct: "C"
         }
-    }
-];
-
-var question2 = [
+    },
     {
         question: "The condition of an if/else if statement is enclosed in:",
         answers: {
-            a: "quotes",
-            b: "parenthases",
-            c: "curly brackets",
-            d: "square brackets"
+            choiceA: "quotes",
+            choiceB: "parenthases",
+            choiceC: "curly brackets",
+            choiceD: "square brackets",
+            correct: "B"
         }
-    }
-];
-
-var question3 = [
+    },
     {
         question: "Arrays in JavaScript can be used to store______.",
         answers: {
-            a: "numbers and strings",
-            b: "boonleans",
-            c: "other arrays",
-            d: "all of the above"
+            choiceA: "numbers and strings",
+            choiceB: "boonleans",
+            choiceC: "other arrays",
+            choiceD: "all of the above",
+            correct: "D"
         }
-    }
-];
-
-var question4 = [
+    },
     {
         question: "String values must be enclosed in ____ when assigned to variables.",
         answers: {
-            a: "curly brackets",
-            b: "commas",
-            c: "quotes",
-            d: "parenthesis"
+            choiceA: "curly brackets",
+            choiceB: "commas",
+            choiceC: "quotes",
+            choiceD: "parenthesis",
+            correct: "C"
         }
-    }
-];
-
-var question5 = [
+    },
     {
         question: "A very useful tool in web development and for debugging for printing content to the debugger in:",
         answers: {
-            a: "JavaScript",
-            b: "terminal/ bash",
-            c: "for loops",
-            d: "console.log"
+            choiceA: "JavaScript",
+            choiceB: "terminal/ bash",
+            choiceC: "for loops",
+            choiceD: "console.log",
+            correct: "D"
         }
     }
 ];
+//define what quetion you're on
+const lastQuestion = questions.length - 1;
+let runningQuestion = 0;
 
+//render question:
+function renderQuestion(){
+    let q = questions[runningQuestion];
 
+    question.innerHTML = "<p>"+ q.question +"</p>";
 
+    choiceA.innerHTML = q.choiceA;
+    choiceB.innerHTML = q.choiceB;
+    choiceC.innerHTML = q.choiceC;
+    choiceD.innerHTML = q.choiceD;
+}
 
 buttonEl.addEventListener('click', startQuiz);
 
@@ -102,4 +113,4 @@ function displaySection(num){
 }
 
 displaySection();
-
+renderQuestion()
