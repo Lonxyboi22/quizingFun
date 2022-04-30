@@ -8,8 +8,11 @@ const choiceA = document.getElementById("A");
 const choiceB = document.getElementById("B");
 const choiceC = document.getElementById("C");
 const choiceD = document.getElementById("D");
+const timerEl = document.querySelector("#timer");
 let timer
 var timeLeft = 60;
+choiceA.addEventListener('click', (e)=>{console.log(e)});
+
 
 let questions = [
     {
@@ -63,20 +66,71 @@ let questions = [
         }
     }
 ];
+
+for(var i = 0; i <= questions.length; i++){
+        console.log(questions[i]);
+
+
+}
+
 //define what quetion you're on
 const lastQuestion = questions.length - 1;
 let runningQuestion = 0;
 
 //render question:
-function renderQuestion(){
+function renderQuestion(runningQuestion){
     let q = questions[runningQuestion];
 
     question.innerHTML = "<p>"+ q.question +"</p>";
+   // const choiceA = document.getElementById("A");
+    choiceA.innerHTML = q.answers.choiceA;
+    choiceB.innerHTML = q.answers.choiceB;
+    choiceC.innerHTML = q.answers.choiceC;
+    choiceD.innerHTML = q.answers.choiceD;
 
-    choiceA.innerHTML = q.choiceA;
-    choiceB.innerHTML = q.choiceB;
-    choiceC.innerHTML = q.choiceC;
-    choiceD.innerHTML = q.choiceD;
+    choiceA.addEventListener('click', (e)=> {
+        console.log(e.target.id);
+        if(q.answers.correct = e.target.id){
+            alert("you are correct!");
+        }
+        else {
+            alert("Wrong answer!");
+            //
+        }
+        
+    });
+
+    choiceB.addEventListener('click', (e)=> {
+        console.log(e.target.id);
+        if(q.answers.correct = e.target.id){
+            alert("you are correct!");
+        }
+        else {
+            alert("Wrong answer!");
+        }
+    });
+
+    choiceC.addEventListener('click', (e)=> {
+        console.log(e.target.id);
+        if(q.answers.correct = e.target.id){
+            alert("you are correct!");
+        }
+        else {
+            alert("Wrong answer!");
+        }
+    });
+
+    choiceD.addEventListener('click', (e)=> {
+        console.log(e.target.id);
+        if(q.answers.correct = e.target.id){
+            alert("you are correct!");
+        }
+        else {
+            alert("Wrong answer!");
+        }
+    });
+
+    console.log(q);
 }
 
 buttonEl.addEventListener('click', startQuiz);
@@ -85,15 +139,20 @@ buttonEl.addEventListener('click', startQuiz);
 
 function startQuiz(){
     displaySection(1);
+    renderQuestion(1);
     timer = setInterval(function(){
         timeLeft--;
         if(timeLeft <= 0){
             clearInterval(timer);
             displaySection(2);
         }
-        console.log(timeLeft);
+        timerEl.textContent = timeLeft;
+       // console.log(choiceA);
     }, 1000);
 }
+
+//use index to iterate through questions
+//timer in for loop
 
 function displaySection(num){
     quizEl.classList.add('hidden');
@@ -113,4 +172,3 @@ function displaySection(num){
 }
 
 displaySection();
-renderQuestion()
